@@ -5,19 +5,20 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Bird extends Animal
+public class Bird extends Animal implements Sounds
 {
-    // instance variables - replace the example below with your own
     private int wingspan;
     private String color;
+    private String sound;
 
     /**
      * Constructor for objects of class Birds
      */
-    public Bird(String name, String species, String bdate, int price, int wingspan, String color){
-        super(name, species, bdate, price);
+    public Bird(String name, String species, String birthdate, int price, int wingspan, String color, String sound){
+        super(name, species, birthdate, price);
         this.color = color;
         this.wingspan = wingspan;
+        this.sound = sound;
     }
     
     public int getWingspan(){
@@ -28,8 +29,15 @@ public class Bird extends Animal
         return color;
     }
     
-    public void getBirdDescription(){
-        System.out.println("Species: " +getSpecies()+ ",\t Name: " +getName()+",\t Birthdate: "
-        +bdate+",\n Price: " +getPrice()+ ",\t Wingspan: "+wingspan+",\t Color: "+color+".");
+    public String sound(){
+        return sound;
+    }
+    
+    public Animal add(String name, String species, String birthdate, int price, int wingspan, String color, String sound){
+        return new Bird(name, species, birthdate, price, wingspan, color, sound);
+    }
+    
+    @Override public String printInfo(){
+        return super.printInfo() + ",\t Wingspan: "+wingspan+",\t Color: "+color+".";
     }
 }

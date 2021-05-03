@@ -5,19 +5,20 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Mammal extends Animal
+public class Mammal extends Animal implements Sounds
 {
-    // instance variables - replace the example below with your own
     private int gestation;
     private int litter;
+    private String sound;
 
     /**
      * Constructor for objects of class Mammals
      */
-    public Mammal(String name, String species, String bdate, int price, int gestation, int litter){
-        super(name, species, bdate, price);
+    public Mammal(String name, String species, String birthdate, int price, int gestation, int litter, String sound){
+        super(name, species, birthdate, price);
         this.gestation = gestation;
         this.litter = litter;
+        this.sound = sound;
     }
     
     public int getGestation(){
@@ -28,8 +29,15 @@ public class Mammal extends Animal
         return litter;
     }
     
-    public void getMammalDescription(){
-        System.out.println("Species: " +getSpecies()+ ",\t Name: " +getName()+",\t Birthdate: "
-        +bdate+",\n Price: " +getPrice()+ ",\t Gestation: "+gestation+",\t Litter: "+litter+".");
+    public String sound(){
+        return sound;
+    }
+    
+    public Animal add(String name, String species, String birthdate, int price, int gestation, int litter, String sound){
+        return new Mammal(name, species, birthdate, price, gestation, litter, sound);
+    }
+    
+    @Override public String printInfo(){
+        return super.printInfo() + ",\t Gestation: "+ gestation+",\t Litter: "+ litter+".";
     }
 }
