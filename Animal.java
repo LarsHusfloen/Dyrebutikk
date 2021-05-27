@@ -4,23 +4,26 @@
  * Representing the animals in this project.
  *
  */
-public class Animal
+public abstract class Animal 
 {
-    protected int price;
-    protected String species;
-    protected String name;
-    protected final String bdate;
+    private int price;
+    private String species;
+    private String name;
+    private final String birthdate;
 
     /**
      * Creates the animal with name, species and price
      * @param name, species, price
      */
-    public Animal(String name, String species, String bdate, int price)
+    public Animal(String name, String species, String birthdate, int price)
     {
         this.name = name;
         this.species = species;
-        this.bdate = bdate;
+        this.birthdate = birthdate;
         this.price = price;
+        if(name.isEmpty() && species.isEmpty()){
+            throw new IllegalStateException("Must have a name and a species.");
+        }
     }
     
     public String getName(){
@@ -35,15 +38,21 @@ public class Animal
         return price;
     }
     
-    public String getBDate(){
-        return bdate;
+    public String getBirthDate(){
+        return birthdate;
+    }
+    
+    abstract public String sound();
+    
+    public Animal add(String name, String species, String birthdate, int price){
+        return null;
     }
     
     /**
      * prints a description of the animal
      */
-    public void printAnimalInfo(){
-        System.out.println("Species: " + getSpecies() + ",\t Name: " + getName() +
-        ",\t Birthdate: " + bdate +",\t Price: " + getPrice() + ".");
+    public String printInfo(){
+        return "Species: " + getSpecies() + ",\t Name: " + getName() +
+        ",\t Birthdate: " + birthdate +",\t Price: " + getPrice();
     }
 }

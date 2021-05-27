@@ -5,19 +5,20 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Fish extends Animal
+public class Fish extends Animal implements Sounds
 {
-    // instance variables - replace the example below with your own
     private int depth;
     private int waterTemp;
+    private String sound;
 
     /**
      * Constructor for objects of class Fish
      */
-    public Fish(String name, String species, String bdate, int price, int depth, int waterTemp){
-        super(name, species, bdate, price);
+    public Fish(String name, String species, String birthdate, int price, int depth, int waterTemp, String sound){
+        super(name, species, birthdate, price);
         this.depth = depth;
         this.waterTemp = waterTemp;
+        this.sound = sound;
     }
 
     public int getDepth(){
@@ -28,8 +29,15 @@ public class Fish extends Animal
         return waterTemp;
     }
     
-    public void getFishDescription(){
-        System.out.println("Species: " +getSpecies()+ ",\t Name: " +getName()+",\t Birthdate: "
-        +bdate+",\n Price: " +getPrice()+ ",\t Depth: "+depth+",\t WaterTemp: "+waterTemp+".");
+    public String sound(){
+        return sound;
+    }
+    
+    public Animal add(String name, String species, String birthdate, int price, int depth, int waterTemp, String sound){
+        return new Fish(name, species, birthdate, price, depth, waterTemp, sound);
+    }
+    
+    @Override public String printInfo(){
+        return super.printInfo() + ",\t Depth: "+depth+",\t WaterTemp: "+waterTemp+".";
     }
 }
